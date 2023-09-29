@@ -1,5 +1,6 @@
 package com.cloud.Controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -55,8 +56,14 @@ public class CloudVendorApiService {
 		return "Cloud vender updated Successfully";
 
 	}
-	
-	
-	
+	//http://localhost:8080/cloudVendor/07 (delete)
+	@DeleteMapping("{vendorId}")
+	public String deleteCloudVendorDetails(String vendorId) {
+
+		this.cloudVender = null;
+
+		return "Cloud vender deleted Successfully";
+
+	}
 
 }
