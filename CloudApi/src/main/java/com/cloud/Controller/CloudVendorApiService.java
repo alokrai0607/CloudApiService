@@ -56,6 +56,7 @@ public class CloudVendorApiService {
 		return "Cloud vender updated Successfully";
 
 	}
+	
 	//http://localhost:8080/cloudVendor/07 (delete)
 	@DeleteMapping("{vendorId}")
 	public String deleteCloudVendorDetails(String vendorId) {
