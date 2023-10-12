@@ -2,12 +2,10 @@ package com.cloud.Service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.cloud.Models.CloudVender;
 
-@Service
-public interface cloudVendorService {
+
+public interface CloudVendorService {
 
 	public String createCloudvendor(CloudVender cloudVender);
 
