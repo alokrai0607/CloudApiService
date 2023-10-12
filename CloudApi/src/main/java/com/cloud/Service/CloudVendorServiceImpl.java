@@ -4,23 +4,22 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.cloud.Exception.CloudVendorNotFoundException;
 import com.cloud.Models.CloudVender;
 import com.cloud.Repository.CloudVenderRepository;
 
-
 @Service
 public class CloudVendorServiceImpl implements CloudVendorService {
-    
+
 	CloudVenderRepository cloudVenderRepository;
 
 	public CloudVendorServiceImpl(CloudVenderRepository cloudVenderRepository) {
 		super();
 		this.cloudVenderRepository = cloudVenderRepository;
 	}
-	
-	
-        // createCloudvendor
-	
+
+	// createCloudvendor
+
 	@Override
 	public String createCloudvendor(CloudVender cloudVender) {
 
@@ -29,19 +28,17 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 		return "Cloudvendor created Sucessfully";
 	}
 
-	
-	    //updateCloudvendor
+	// updateCloudvendor
 	@Override
 	public String updateCloudvendor(CloudVender cloudVender) {
-		
+
 		cloudVenderRepository.save(cloudVender);
 
 		return "Cloudvendor updated Sucessfully";
 	}
 
-	
-	  //deleteCloudvendor
-	
+	// deleteCloudvendor
+
 	@Override
 	public String deleteCloudvendor(String cloudVender) {
 
@@ -50,14 +47,15 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 		return "vendor deleted Sucessfully";
 	}
 
-	    //getCloudvendor
+	// getCloudvendor
 	@Override
 	public CloudVender getCloudvendor(String cloudVenderId) {
-
+		if (cloudVenderRepository.findById(cloudVenderId).isEmpty())
+			throw new CloudVendorNotFoundException("Cloud Vendor does not Exsits");
 		return cloudVenderRepository.findById(cloudVenderId).get();
 	}
-	
-	    //getCloudvendor
+
+	// getCloudvendor
 
 	@Override
 	public List<CloudVender> getAllcloudVender() {
