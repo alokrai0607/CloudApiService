@@ -2,6 +2,8 @@ package com.cloud.Controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cloud.Models.CloudVender;
+import com.cloud.ResponseHandler.ResponceHandlerClass;
 import com.cloud.Service.CloudVendorService;
 
 @RestController
@@ -27,9 +30,10 @@ public class CloudVendorController {
 
 	// http://localhost:8080/cloudVendor/07 (Get)
 	@GetMapping("{vendorId}")
-	public CloudVender getCloudVenderdetails(@PathVariable("vendorId") String vendorId) {
+	public ResponseEntity<Object> getCloudVenderdetails(@PathVariable("vendorId") String vendorId) {
 
-		return cloudVendorService.getCloudvendor(vendorId);
+		return ResponceHandlerClass.reponseBuilder("REquested vendor details are given here", HttpStatus.OK,
+				cloudVendorService.getCloudvendor(vendorId));
 
 	}
 
@@ -74,7 +78,7 @@ public class CloudVendorController {
 
 	// http://localhost:8080/cloudVendor/07 (delete)
 	@DeleteMapping("{vendorId}")
-	public String deleteCloudVendorDetails(@PathVariable("vendorId")  String vendorId) {
+	public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
 
 		cloudVendorService.deleteCloudvendor(vendorId);
 
