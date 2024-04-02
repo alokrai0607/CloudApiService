@@ -59,7 +59,6 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 	@Override
 	public List<CloudVender> getAllcloudVender() {
-
 		return cloudVenderRepository.findAll();
 	}
 

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cloud.Exception.CloudVendorNotFoundException;
 import com.cloud.Models.CloudVender;
 import com.cloud.ResponseHandler.ResponceHandlerClass;
 import com.cloud.Service.CloudVendorService;
@@ -62,7 +64,6 @@ public class CloudVendorController {
 	}
 
 	// localhost:8080/cloudVendor
-	
 	@PutMapping
 	public String UpdateCloudVenderDetails(@RequestBody CloudVender cloudVender) {
 
@@ -72,19 +73,31 @@ public class CloudVendorController {
 
 	}
 
-
-
-
-	// http://localhost:8080/cloudVendor/07 (delete)
-	@DeleteMapping("{vendorId}")
+//	// http://localhost:8080/cloudVendor/07 (delete)
+//	@DeleteMapping("{vendorId}")
+//	public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
+//		try {
+//			cloudVendorService.deleteCloudvendor(vendorId);
+//			return "Cloud vender deleted Successfully";
+//		} catch (Exception e) {
+//			return "vendor not found";
+//		}
+//
+//	}
+	
+	@DeleteMapping("/{vendorId}")
+	@ResponseStatus(HttpStatus.OK)
 	public String deleteCloudVendorDetails(@PathVariable("vendorId") String vendorId) {
-
-		cloudVendorService.deleteCloudvendor(vendorId);
-
-		return "Cloud vender deleted Successfully";
-
+	    try {
+	        cloudVendorService.deleteCloudvendor(vendorId);
+	        return "Cloud vendor deleted Successfully";
+	    } catch (CloudVendorNotFoundException e) {
+	        return "Vendor not found";
+	    } catch (Exception e) {
+	        return "An error occurred while deleting the vendor";
+	    }
 	}
 
+
+
 }
-
-

@@ -5,7 +5,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Cloud_Table")
+@Table(name="cloud_vender_info")
 public class CloudVender {
 
 	@Id
