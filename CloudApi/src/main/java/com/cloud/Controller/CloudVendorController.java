@@ -62,11 +62,7 @@ public class CloudVendorController {
 	}
 
 	// localhost:8080/cloudVendor
-	/*
-	 * { "vendorId": "07", "vendorName": "Alok Rai Shivam", "vendorAddress":
-	 * "Bhagwanpur", "vendorPhoneNumber": "90444414580" }
-	 */
-
+	
 	@PutMapping
 	public String UpdateCloudVenderDetails(@RequestBody CloudVender cloudVender) {
 
@@ -75,6 +71,9 @@ public class CloudVendorController {
 		return "Cloud vender updated Successfully";
 
 	}
+
+
+
 
 	// http://localhost:8080/cloudVendor/07 (delete)
 	@DeleteMapping("{vendorId}")
@@ -87,3 +86,5 @@ public class CloudVendorController {
 	}
 
 }
+
+
