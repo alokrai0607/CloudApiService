@@ -33,19 +33,29 @@ public class CloudVendorController {
 	// http://localhost:8080/cloudVendor/07 (Get)
 	@GetMapping("{vendorId}")
 	public ResponseEntity<Object> getCloudVenderdetails(@PathVariable("vendorId") String vendorId) {
-
 		return ResponceHandlerClass.reponseBuilder("REquested vendor details are given here", HttpStatus.OK,
 				cloudVendorService.getCloudvendor(vendorId));
 
 	}
 
-	// http://localhost:8080/cloudVendor/07 (Get All)
+//	 //localhost:8080/cloudVendor/07 (Get All)
+//	@GetMapping()
+//	public List<CloudVender> getAllCloudVenderdetails() {
+//
+//		return cloudVendorService.getAllcloudVender();
+//
+//	}
+	
 	@GetMapping()
-	public List<CloudVender> getAllCloudVenderdetails() {
-
-		return cloudVendorService.getAllcloudVender();
-
+	public ResponseEntity<?> getAllCloudVenderdetails() {
+	    try {
+	        List<CloudVender> cloudVendors = cloudVendorService.getAllcloudVender();
+	        return ResponseEntity.ok(cloudVendors);
+	    } catch (Exception e) {
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error occurred while fetching vendors");
+	    }
 	}
+
 
 	// http://localhost:8080/cloudVendor (Post)
 

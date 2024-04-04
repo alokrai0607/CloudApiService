@@ -57,9 +57,20 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 	// getCloudvendor
 
+//	@Override
+//	public List<CloudVender> getAllcloudVender() {
+//		
+//		return cloudVenderRepository.findAll();
+//	}
 	@Override
 	public List<CloudVender> getAllcloudVender() {
-		return cloudVenderRepository.findAll();
+	    try {
+	        return cloudVenderRepository.findAll();
+	    } catch (Exception e) {
+	        // Log the exception or handle it as needed
+	        throw new RuntimeException("Sorry no any data is here ", e);
+	    }
 	}
+
 
 }
