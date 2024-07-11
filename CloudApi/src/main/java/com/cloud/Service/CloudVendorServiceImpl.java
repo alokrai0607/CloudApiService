@@ -34,24 +34,23 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 		cloudVenderRepository.save(cloudVender);
 
-		return "Cloudvendor updated Sucessfully";
+		return "Cloudvendor updated.";
 	}
 
-	// deleteCloudvendor
-
+	// deleteCloudvendorx`
 	@Override
 	public String deleteCloudvendor(String cloudVender) {
 
 		cloudVenderRepository.deleteById(cloudVender);
 
-		return "vendor deleted Sucessfully";
+		return "vendor deleted.";
 	}
 
 	// getCloudvendor
 	@Override
 	public CloudVender getCloudvendor(String cloudVenderId) {
 		if (cloudVenderRepository.findById(cloudVenderId).isEmpty())
-			throw new CloudVendorNotFoundException("Cloud Vendor does not Exsits");
+			throw new CloudVendorNotFoundException("Cloud Vendor not Exsits");
 		return cloudVenderRepository.findById(cloudVenderId).get();
 	}
 
@@ -68,9 +67,7 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 	        return cloudVenderRepository.findAll();
 	    } catch (Exception e) {
 	        // Log the exception or handle it as needed
-	        throw new RuntimeException("Sorry no any data is here ", e);
+	        throw new RuntimeException("Sorry no data is here ", e);
 	    }
 	}
-
-
 }
